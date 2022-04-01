@@ -28,10 +28,11 @@ var fightOrSkip = function(){
        // subtract money from playerInfo.money for skipping
        playerInfo.money = Math.max(0, playerInfo.money - 10);
        console.log("playerInfo.money", playerInfo.money)
-       return;
+       return true;
      }
+     
 
-  }
+  }return false;
 }
 // fight function (now with parameter for enemy's object holding name, health, and attack values)
 var fight = function(enemy) {
