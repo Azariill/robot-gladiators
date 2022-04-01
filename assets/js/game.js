@@ -36,18 +36,43 @@ var fightOrSkip = function(){
 }
 // fight function (now with parameter for enemy's object holding name, health, and attack values)
 var fight = function(enemy) {
+
+  var isPlayerTurn = true;
+
+  if(Math.random() > .5){
+    isPlayerTurn = false;
+  }
   while (playerInfo.health > 0 && enemy.health > 0) {
-    fightOrSkip();
-   
+    
+    
+    
+    if(isPlayerTurn){
+      fightOrSkip();
+      var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
+
+      enemy.health = Math.max(0, enemy.health - damage);
+      console.log(
+        playerInfo.name + ' attacked ' + enemy.name + '. ' + enemy.name + ' now has ' + enemy.health + ' health remaining.'
+      );
+       isPlayerTurn = false;
+    }
+    else{
+          // generate random damage value based on player's attack power
+        // generate random damage value based on player's attack power
+        var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
+
+        enemy.health = Math.max(0, enemy.health - damage);
+        console.log(
+          playerInfo.name + ' attacked ' + enemy.name + '. ' + enemy.name + ' now has ' + enemy.health + ' health remaining.'
+        );
+      isPlayerTurn = true;
+
+
+
+    }
+    
     
 
-    // generate random damage value based on player's attack power
-    var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
-
-    enemy.health = Math.max(0, enemy.health - damage);
-    console.log(
-      playerInfo.name + ' attacked ' + enemy.name + '. ' + enemy.name + ' now has ' + enemy.health + ' health remaining.'
-    );
 
     // check enemy's health
     if (enemy.health <= 0) {
